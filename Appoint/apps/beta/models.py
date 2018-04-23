@@ -24,6 +24,8 @@ class UserManager(models.Manager):
 				errors['password_length'] = "Password be more than 8 characters"
 			if password != password_c:
 				errors['password_match'] = "Password confirmation failed"
+			if User.objects.filter(email = email):
+				errors['email'] = "Email already exists!"
 			if not validate_email.match(email):
 				errors['email_valid'] = "Email not valid"
 			return errors		
@@ -62,15 +64,6 @@ class Profile(models.Model):
 	created_at = models.DateTimeField(auto_now_add =True)
 	updated_at = models.DateTimeField(auto_now = True)
 
-class Schedule(models.Model):
-	start = models.DateTimeField()
-	end = models.DateTimeField()
-	user = models.ForeignKey(User, related_name = "schedules") # ONE TO MANY (USER & SCHEDULES)
-	profile = models.ForeignKey(Profile, related_name = "schedules") # ONE TO MANY (PROFILE & SCHEDULES)
-	appointment = models.OneToOneField(Appointment, related_name="schedule") # ONE TO ONE (SCHEDULE & APPOINTMENTS)
-	created_at = models.DateTimeField(auto_now_add =True)
-	updated_at = models.DateTimeField(auto_now = True)
-
 class Appointment(models.Model):
 	subject = models.CharField(max_length=255)
 	location = models.CharField(max_length=255)
@@ -80,6 +73,16 @@ class Appointment(models.Model):
 	profile = models.ForeignKey(Profile, related_name="appointments") # ONE TO MANY (PROFILE & APPOINTMENTS)
 	created_at = models.DateTimeField(auto_now_add =True)
 	updated_at = models.DateTimeField(auto_now = True)
+
+class Schedule(models.Model):
+	start = models.DateTimeField()
+	end = models.DateTimeField()
+	user = models.ForeignKey(User, related_name = "schedules") # ONE TO MANY (USER & SCHEDULES)
+	profile = models.ForeignKey(Profile, related_name = "schedules") # ONE TO MANY (PROFILE & SCHEDULES)
+	appointment = models.OneToOneField(Appointment, related_name="schedule") # ONE TO ONE (SCHEDULE & APPOINTMENTS)
+	created_at = models.DateTimeField(auto_now_add =True)
+	updated_at = models.DateTimeField(auto_now = True)
+
 
 class Message(models.Model):
 	message = models.TextField(max_length= 1000)
