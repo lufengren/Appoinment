@@ -41,7 +41,7 @@ class UserManager(models.Manager):
 		else:
 			user = User.objects.filter(email = login_id)
 			if not user:
-				errors['invalid_id'] = "There is no record found."
+				errors['invalid_id'] = "Email does not exist."
 			else:
 				user = User.objects.get(email = login_id)
 				data_pw = user.password 
