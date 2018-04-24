@@ -56,7 +56,7 @@ class User(models.Model):
 	password = models.CharField(max_length=255)
 	created_at = models.DateTimeField(auto_now_add =True)
 	updated_at = models.DateTimeField(auto_now = True)
-	admin = models.IntegerField() # default 0, admin = 1
+	admin = models.IntegerField() # default 0, ADMIN = 1
 	objects = UserManager()
 
 class Profile(models.Model):
@@ -67,11 +67,10 @@ class Profile(models.Model):
 
 class Appointment(models.Model):
 	subject = models.CharField(max_length=255)
-	location = models.CharField(max_length=255)
 	start = models.DateTimeField()
 	end = models.DateTimeField()
-	users = models.ManyToManyField(User, related_name = "appointments") # MANY TO MANY (USERS & APPOINTMENTS)
-	rejected = models.IntegerField() # default by 0. REJECTED = 0
+	user = models.ForeignKey(User, related_name = "appointments") # ONE TO MANY (USER & APPOINTMENTS)
+	rejected = models.IntegerField() # default by 0. REJECTED = 1
 	created_at = models.DateTimeField(auto_now_add =True)
 	updated_at = models.DateTimeField(auto_now = True)
 
@@ -89,3 +88,21 @@ class Message(models.Model):
 	appointment = models.ForeignKey(Appointment, related_name = "messages") # ONE TO MANY (APPOINTMENT & MESSAGES)
 	created_at = models.DateTimeField(auto_now_add =True)
 	updated_at = models.DateTimeField(auto_now = True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	# if you are reading this, you must be hardworking. Great job

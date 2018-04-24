@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render,redirect
 from django.contrib import messages 
 import bcrypt
-from .models import User
+from .models import User, Profile, Appointment, Schedule, Message
 #####################################################################################################
 def index(request):
 	return render(request, 'beta/loginpage.html')
@@ -41,4 +41,12 @@ def login(request):
 
 def mainpage(request):
     return render(request, 'beta/mainpage.html')
-    
+
+def appointmentpage(request,id):
+    appointment = Appointment.objects.get(id = id)
+    user = appointment.user.all()
+    context = {
+        'appoint' : appointment,
+        'user' : user,
+    }
+    return render(request,'beta/appointmentpage.html', context)
