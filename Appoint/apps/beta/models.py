@@ -41,7 +41,7 @@ class UserManager(models.Manager):
 		else:
 			user = User.objects.filter(email = login_id)
 			if not user:
-				errors['invalid_id'] = "There is no record found."
+				errors['invalid_id'] = "Email does not exist."
 			else:
 				user = User.objects.get(email = login_id)
 				data_pw = user.password 
@@ -56,6 +56,7 @@ class User(models.Model):
 	password = models.CharField(max_length=255)
 	created_at = models.DateTimeField(auto_now_add =True)
 	updated_at = models.DateTimeField(auto_now = True)
+	admin = models.IntegerField() # default 0, admin = 1
 	objects = UserManager()
 
 class Profile(models.Model):
@@ -70,7 +71,7 @@ class Appointment(models.Model):
 	start = models.DateTimeField()
 	end = models.DateTimeField()
 	users = models.ManyToManyField(User, related_name = "appointments") # MANY TO MANY (USERS & APPOINTMENTS)
-	rejected = models.IntegerField()
+	rejected = models.IntegerField() # default by 0. REJECTED = 0
 	created_at = models.DateTimeField(auto_now_add =True)
 	updated_at = models.DateTimeField(auto_now = True)
 

@@ -40,3 +40,4 @@ def login(request):
 
 def mainpage(request):
     return render(request, 'beta/mainpage.html')
+    
