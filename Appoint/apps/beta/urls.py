@@ -11,8 +11,3 @@ urlpatterns =[
     url(r'^rejectpopup.html$', views.rejectpopup),
     url(r'^addschedule.html$', views.addschedule),
 ]
-	
-    
-    
-	
-
