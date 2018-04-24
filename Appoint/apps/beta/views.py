@@ -39,5 +39,9 @@ def login(request):
         return redirect('/main')  
 
 def mainpage(request):
+<<<<<<< Updated upstream
     return render(request, 'beta/mainpage.html')
     
+=======
+    return render(request, 'beta/mainpage.html')
+>>>>>>> Stashed changes
