@@ -21,7 +21,8 @@ def register(request):
             first_name = request.POST['first_name'],
             last_name = request.POST['last_name'],
             email = request.POST['email'],
-            password = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt())
+            password = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()),
+            admin = 0
         )
         request.session['id']=user.id
         request.session['username']=user.username
