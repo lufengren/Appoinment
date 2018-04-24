@@ -26,7 +26,29 @@ def register(request):
             email = request.POST['email'],
             password = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt())
         )
-        return redirect('/')
+        request.session['id']=user.id
+        request.session['username']=user.username
+        return redirect("/homepage")
+
+def homepage(request):
+    #user=User.objects.get(id=request.session['id'])
+    # schedules=user.schedules.all()
+    # context={
+    #     'schedules':schedules,
+    # }
+    return render(request,"beta/homepage.html")
+
+def acceptpopup(request):
+    return render(request,"beta/acceptpopup.html")
+
+def rejectpopup(request):
+    return render(request,"beta/rejectpopup.html")
+
+def addschedule(request):
+    return render(request,"beta/addschedule.html")
+    
+
+
 
 
        

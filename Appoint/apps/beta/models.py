@@ -70,7 +70,7 @@ class Appointment(models.Model):
 	start = models.DateTimeField()
 	end = models.DateTimeField()
 	users = models.ManyToManyField(User, related_name = "appointments") # MANY TO MANY (USERS & APPOINTMENTS)
-	profile = models.ForeignKey(Profile, related_name="appointments") # ONE TO MANY (PROFILE & APPOINTMENTS)
+	# profile = models.ForeignKey(Profile, related_name="appointments") # ONE TO MANY (PROFILE & APPOINTMENTS)
 	created_at = models.DateTimeField(auto_now_add =True)
 	updated_at = models.DateTimeField(auto_now = True)
 
