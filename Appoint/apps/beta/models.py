@@ -88,4 +88,9 @@ class Message(models.Model):
 	user = models.ForeignKey(User,related_name ="messages") #ONE TO MANY (USER & MESSAGES)
 	appointment = models.ForeignKey(Appointment, related_name = "messages") # ONE TO MANY (APPOINTMENT & MESSAGES)
 	created_at = models.DateTimeField(auto_now_add =True)
+<<<<<<< HEAD
 	updated_at = models.DateTimeField(auto_now = True)
+=======
+	updated_at = models.DateTimeField(auto_now = True)
+
+>>>>>>> aa8d623a7d2dea7951a8f8cbff09b28c5b0a41b1
