@@ -24,9 +24,26 @@ def register(request):
             password = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()),
             admin = 0
         )
+        request.session['id']=user.id
+        request.session['username']=user.username
+        return redirect("/homepage")
 
-        messages.success(request, "You are successfully registered. Log in to verify.")
-        return redirect('/')
+def homepage(request):
+    #user=User.objects.get(id=request.session['id'])
+    # schedules=user.schedules.all()
+    # context={
+    #     'schedules':schedules,
+    # }
+    return render(request,"beta/homepage.html")
+
+def acceptpopup(request):
+    return render(request,"beta/acceptpopup.html")
+
+def rejectpopup(request):
+    return render(request,"beta/rejectpopup.html")
+
+def addschedule(request):
+    return render(request,"beta/addschedule.html")
 
 def login(request):
     errors = User.objects.login_validator(request.POST)
