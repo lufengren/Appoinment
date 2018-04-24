@@ -11,15 +11,22 @@
 	<div id = "logo">
 		<p>LOGO GOES HERE</p>
 	</div>
-	<div id="login_wrapper">
+	<div id="login_wrapper">		
+		{% if messages %}
+			{% for message in messages %}
+				<p>{{message}}</p>
+			{% endfor %}
+		{% endif %}
 		<h1>Login</h1>
-		<form action="/login" method="post">
+		<form action="/login/0" method="post">
 			{% csrf_token %}
 			<label for="login_id">ID: <input type="text" name="login_id"></label><br>
 			<label for="login_pw">Password: <input type="password" name="login_pw"></label><br>
 			<input type="submit" value="LOGIN">
 		</form>
 		<a href="/register">Don't have account yet? Click here to register</a>
+		<br>
+
 	</div>
 </body>
 </html>
