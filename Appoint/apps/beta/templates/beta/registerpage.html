@@ -19,6 +19,12 @@
 			<label for="password_c">Confirmation PW: <input type="password" name="password_c"></label><br>
 			<input type="submit" value="REGISTER">
 		</form>
+		<br>
+		{% if messages %}
+			{% for message in messages %}
+				<p>{{message}}</p>
+			{% endfor %}
+		{% endif %}
 	</div>
 </body>
 </html>
