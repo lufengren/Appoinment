@@ -71,11 +71,7 @@ class Appointment(models.Model):
 	start = models.DateTimeField()
 	end = models.DateTimeField()
 	users = models.ManyToManyField(User, related_name = "appointments") # MANY TO MANY (USERS & APPOINTMENTS)
-<<<<<<< HEAD
-	# profile = models.ForeignKey(Profile, related_name="appointments") # ONE TO MANY (PROFILE & APPOINTMENTS)
-=======
 	rejected = models.IntegerField() # default by 0. REJECTED = 0
->>>>>>> 77ba714a3ed65069a12e23faded47d443f4fae00
 	created_at = models.DateTimeField(auto_now_add =True)
 	updated_at = models.DateTimeField(auto_now = True)
 
