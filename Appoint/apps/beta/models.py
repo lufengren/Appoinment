@@ -13,21 +13,21 @@ class UserManager(models.Manager):
 		password = postData['password']
 		password_c = postData['password_c'] 
 		if len(first_name) < 1 or len(last_name) < 1 or len(email) < 1 or len(password) <1 or len(password_c)<1:
-			errors['length'] = "All inputs must be filled"
+			errors['length'] = "All inputs must be filled."
 			return errors 
 		else:
 			if len(first_name) < 3 or len(last_name) < 3:
-				errors['name_length'] = "Name must be more than 2 characters"
+				errors['name_length'] = "Name must be more than 2 characters."
 			if not first_name.isalpha() or not last_name.isalpha():
 				errors['name_type'] = "Name be alphabets only"
 			if len(password) < 8 or len(password_c) < 8:
-				errors['password_length'] = "Password be more than 8 characters"
+				errors['password_length'] = "Password be more than 8 characters."
 			if password != password_c:
-				errors['password_match'] = "Password confirmation failed"
+				errors['password_match'] = "Password confirmation failed."
 			if User.objects.filter(email = email):
-				errors['email'] = "Email already exists!"
+				errors['email'] = "Email already exists."
 			if not validate_email.match(email):
-				errors['email_valid'] = "Email not valid"
+				errors['email_valid'] = "Email not valid."
 			return errors		
 
 	def login_validator(self, postData):
@@ -36,17 +36,17 @@ class UserManager(models.Manager):
 		login_pw = postData['login_pw']
 		
 		if len(login_id)<1 or len(login_pw)<1:
-			errors['length'] = "All inputs must be filled"
+			errors['length'] = "All inputs must be filled."
 			return errors
 		else:
 			user = User.objects.filter(email = login_id)
 			if not user:
-				errors['invalid_id'] = "There is no record found"
+				errors['invalid_id'] = "Email does not exist."
 			else:
-				user = Users.objects.get(email = login_id)
+				user = User.objects.get(email = login_id)
 				data_pw = user.password 
 				if not bcrypt.checkpw(str(login_pw).encode(), data_pw.encode()):
-					errors['invalid_password'] = "Invalid Password"
+					errors['invalid_password'] = "Invalid Password."
 			return errors
 
 class User(models.Model):
@@ -56,6 +56,7 @@ class User(models.Model):
 	password = models.CharField(max_length=255)
 	created_at = models.DateTimeField(auto_now_add =True)
 	updated_at = models.DateTimeField(auto_now = True)
+	admin = models.IntegerField() # default 0, admin = 1
 	objects = UserManager()
 
 class Profile(models.Model):
@@ -70,7 +71,11 @@ class Appointment(models.Model):
 	start = models.DateTimeField()
 	end = models.DateTimeField()
 	users = models.ManyToManyField(User, related_name = "appointments") # MANY TO MANY (USERS & APPOINTMENTS)
+<<<<<<< HEAD
 	# profile = models.ForeignKey(Profile, related_name="appointments") # ONE TO MANY (PROFILE & APPOINTMENTS)
+=======
+	rejected = models.IntegerField() # default by 0. REJECTED = 0
+>>>>>>> 77ba714a3ed65069a12e23faded47d443f4fae00
 	created_at = models.DateTimeField(auto_now_add =True)
 	updated_at = models.DateTimeField(auto_now = True)
 
@@ -78,14 +83,13 @@ class Schedule(models.Model):
 	start = models.DateTimeField()
 	end = models.DateTimeField()
 	user = models.ForeignKey(User, related_name = "schedules") # ONE TO MANY (USER & SCHEDULES)
-	profile = models.ForeignKey(Profile, related_name = "schedules") # ONE TO MANY (PROFILE & SCHEDULES)
 	appointment = models.OneToOneField(Appointment, related_name="schedule") # ONE TO ONE (SCHEDULE & APPOINTMENTS)
 	created_at = models.DateTimeField(auto_now_add =True)
 	updated_at = models.DateTimeField(auto_now = True)
 
-
 class Message(models.Model):
 	message = models.TextField(max_length= 1000)
+	user = models.ForeignKey(User,related_name ="messages") #ONE TO MANY (USER & MESSAGES)
 	appointment = models.ForeignKey(Appointment, related_name = "messages") # ONE TO MANY (APPOINTMENT & MESSAGES)
 	created_at = models.DateTimeField(auto_now_add =True)
 	updated_at = models.DateTimeField(auto_now = True)
