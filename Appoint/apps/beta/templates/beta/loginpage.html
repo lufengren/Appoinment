@@ -2,24 +2,63 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Apppint</title>
-	<meta name= "Appoint" content="Appoint-beta: Private Network">
-	{% load static %}
-	<link rel="stylesheet" href="{% static 'beta/css/loginpage.css' %}" media="screen" title="no title" charset="utf-8">
+	<title>Appoint</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Login Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+	function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- Meta tag Keywords -->
+
+	<!-- css files -->
+	<link rel="stylesheet" href="../../static/beta/css/login_style.css" type="text/css" media="all" /> <!-- Style-CSS --> 
+	<link rel="stylesheet" href="../../static/beta/css/login_font-awesome.css"> <!-- Font-Awesome-Icons-CSS -->
+	<!-- //css files -->
+
+	<!-- online-fonts -->
+	<link href="http://fonts.googleapis.com/css?family=Josefin+Sans:100,100i,300,300i,400,400i,600,600i,700,700i&amp;subset=latin-ext" rel="stylesheet">
+	<!-- //online-fonts -->
 </head>
 <body>
-	<div id = "logo">
+	<!-- <div id = "logo">
 		<p>LOGO GOES HERE</p>
+	</div> -->
+	<div class="header-w3l">
+		<h1>Addpoint</h1>
+		<h3>Make Connection Different</h3>
 	</div>
-	<div id="login_wrapper">
-		<h1>Login</h1>
-		<form action="/login" method="post">
-			{% csrf_token %}
-			<label for="login_id">ID: <input type="text" name="login_id"></label><br>
-			<label for="login_pw">Password: <input type="password" name="login_pw"></label><br>
-			<input type="submit" value="LOGIN">
-		</form>
-		<a href="/register">Don't have account yet? Click here to register</a>
+    <!-- main content -->
+	<div class="main-content-agile">
+		<div class="sub-main-w3">	
+			<div class="wthree-pro">
+				<img src="../../static/beta/images/pro .jpg" alt="image">
+				<h2>Login Now</h2>
+			</div>
+			<form action="/login" method="post">
+				{% csrf_token %}
+				<input placeholder="Email" name="login_id" class="user" type="text" required="">
+				<span class="icon1"><i class="fa fa-user" aria-hidden="true"></i></span><br><br>
+				<input  placeholder="Password" name="login_pw" class="pass" type="password" required="">
+				<span class="icon2"><i class="fa fa-unlock" aria-hidden="true"></i></span><br>
+				<div class="sub-w3l">
+					<span class="regishere"><u><a href="/register">Register HERE</a></u></span>
+					<div class="right-w3l">
+						<input type="submit" value="Login">
+					</div>
+				</div>
+			</form>
+		</div>
 	</div>
+
+	<div></div>
+
+<!--//main-->
+
+<!--footer-->
+<div class="footer">
+	<p> All contents © copyright 2017 Addpoints. All rights reserved.</p>
+</div>
+<!--//footer-->
+
 </body>
 </html>
