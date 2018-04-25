@@ -4,7 +4,10 @@ from . import views
 urlpatterns =[
 	url(r'^$', views.index), # login page
     url(r'^login/0$', views.login), # POST _ Login
-    url(r'^register$', views.registerpage), # register page
-	url(r'^register/0$', views.register), # POST _ Register
-	url(r'^main$', views.mainpage) # MAIN PAGE 
+    url(r'^register$', views.registerpage),
+	url(r'^register/0$', views.register),
+    url(r'^homepage$', views.homepage),
+    url(r'^acceptpopup.html$', views.acceptpopup),
+    url(r'^rejectpopup.html$', views.rejectpopup),
+    url(r'^addschedule.html$', views.addschedule),
 ]
