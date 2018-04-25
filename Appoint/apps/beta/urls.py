@@ -12,8 +12,3 @@ urlpatterns =[
     url(r'^addschedule.html$', views.addschedule),
     url(r'^homepage/addshedule$', views.addschedules),
 ]
-	
-    
-    
-	
-
